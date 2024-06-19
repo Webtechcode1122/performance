@@ -9,7 +9,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>Arham Jain's Performance Dashboard</h1>
+        <h1>Student Performance Dashboard</h1>
+
+        <div class="summary">
+            <div class="summary-item" id="summary-average">
+                <h3>Average Score</h3>
+                <p id="average-score">-</p>
+            </div>
+            <div class="summary-item" id="summary-highest">
+                <h3>Highest Score</h3>
+                <p id="highest-score">-</p>
+            </div>
+            <div class="summary-item" id="summary-lowest">
+                <h3>Lowest Score</h3>
+                <p id="lowest-score">-</p>
+            </div>
+        </div>
 
         <div class="subjects">
             <div class="subject" id="subject-math">
@@ -36,6 +51,14 @@
                 <h3>Geography</h3>
                 <canvas id="chart-geography"></canvas>
             </div>
+            <div class="subject" id="subject-sanskrit">
+                <h3>Sanskrit</h3>
+                <canvas id="chart-sanskrit"></canvas>
+            </div>
+            <div class="subject" id="subject-it">
+                <h3>IT</h3>
+                <canvas id="chart-it"></canvas>
+            </div>
         </div>
 
         <div class="input-form">
@@ -50,6 +73,8 @@
                         <option value="biology">Biology</option>
                         <option value="history">History</option>
                         <option value="geography">Geography</option>
+                        <option value="sanskrit">Sanskrit</option>
+                        <option value="it">IT</option>
                     </select>
                 </div>
                 <div class="form-group">
