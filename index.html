@@ -8,10 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#subjects">Subjects</a></li>
+                <li><a href="#input-form">Input Form</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <h1>Student Performance Dashboard</h1>
 
-        <div class="summary">
+        <section id="summary" class="summary">
             <div class="summary-item" id="summary-average">
                 <h3>Average Score</h3>
                 <p id="average-score">-</p>
@@ -24,44 +33,17 @@
                 <h3>Lowest Score</h3>
                 <p id="lowest-score">-</p>
             </div>
-        </div>
+            <div class="summary-item" id="summary-tests-taken">
+                <h3>Tests Taken</h3>
+                <p id="tests-taken">-</p>
+            </div>
+        </section>
 
-        <div class="subjects">
-            <div class="subject" id="subject-math">
-                <h3>Math</h3>
-                <canvas id="chart-math"></canvas>
-            </div>
-            <div class="subject" id="subject-physics">
-                <h3>Physics</h3>
-                <canvas id="chart-physics"></canvas>
-            </div>
-            <div class="subject" id="subject-chemistry">
-                <h3>Chemistry</h3>
-                <canvas id="chart-chemistry"></canvas>
-            </div>
-            <div class="subject" id="subject-biology">
-                <h3>Biology</h3>
-                <canvas id="chart-biology"></canvas>
-            </div>
-            <div class="subject" id="subject-history">
-                <h3>History</h3>
-                <canvas id="chart-history"></canvas>
-            </div>
-            <div class="subject" id="subject-geography">
-                <h3>Geography</h3>
-                <canvas id="chart-geography"></canvas>
-            </div>
-            <div class="subject" id="subject-sanskrit">
-                <h3>Sanskrit</h3>
-                <canvas id="chart-sanskrit"></canvas>
-            </div>
-            <div class="subject" id="subject-it">
-                <h3>IT</h3>
-                <canvas id="chart-it"></canvas>
-            </div>
-        </div>
+        <section id="subjects" class="subjects">
+            <!-- Subjects will be dynamically added by JavaScript -->
+        </section>
 
-        <div class="input-form">
+        <section id="input-form" class="input-form">
             <h2>Enter Test Scores</h2>
             <form id="scoreForm">
                 <div class="form-group">
@@ -95,7 +77,7 @@
                 </div>
                 <button type="submit">Update Scores</button>
             </form>
-        </div>
+        </section>
     </div>
     <script src="script.js"></script>
 </body>
