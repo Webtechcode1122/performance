@@ -27,15 +27,28 @@ document.addEventListener('DOMContentLoaded', function () {
                     data: storedData[subject],
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    pointBorderColor: '#ffffff',
+                    pointHoverBackgroundColor: '#ffffff',
+                    pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
                 }]
             },
             options: {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        min: 1,
-                        max: 100 // Adjusted max value for y-axis
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Score: ${context.raw}`;
+                            }
+                        }
                     }
                 }
             }
@@ -74,10 +87,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const average = calculateAverage(scores);
         const highest = Math.max(...scores);
         const lowest = Math.min(...scores);
+        const testsTaken = scores.length / subjects.length;
 
         document.getElementById('average-score').textContent = average.toFixed(2);
         document.getElementById('highest-score').textContent = highest;
         document.getElementById('lowest-score').textContent = lowest;
+        document.getElementById('tests-taken').textContent = testsTaken.toFixed(0);
     }
 
     // Function to calculate average
