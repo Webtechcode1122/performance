@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
         chemistry: [92, 94, 91, 93],
         biology: [88, 85, 89, 90],
         history: [76, 80, 78, 77],
-        geography: [89, 90, 87, 88]
+        geography: [89, 90, 87, 88],
+        sanskrit: [82, 84, 86, 83], // Added Sanskrit
+        it: [79, 81, 80, 78] // Added IT
     };
 
     // Load data from local storage or use default data
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const subjects = Object.keys(storedData);
     const charts = {};
 
-    // Initialize charts
+    // Initialize charts and update summary statistics
     subjects.forEach(subject => {
         const ctx = document.getElementById(`chart-${subject}`).getContext('2d');
         charts[subject] = new Chart(ctx, {
@@ -32,16 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        suggestedMin: 70,
-                        suggestedMax: 100,
-                        ticks: {
-                            stepSize: 5
-                        }
+                        min: 1,
+                        max: 100 // Adjusted max value for y-axis
                     }
                 }
             }
         });
     });
+
+    // Update summary statistics
+    updateSummary();
 
     // Handle form submission
     document.getElementById('scoreForm').addEventListener('submit', function (event) {
@@ -59,7 +61,29 @@ document.addEventListener('DOMContentLoaded', function () {
         charts[subject].data.datasets[0].data = storedData[subject];
         charts[subject].update();
 
+        // Update summary statistics
+        updateSummary();
+
         // Store the updated data in local storage
         localStorage.setItem('studentPerformanceData', JSON.stringify(storedData));
     });
+
+    // Function to update summary statistics
+    function updateSummary() {
+        const scores = subjects.map(subject => storedData[subject]).flat();
+        const average = calculateAverage(scores);
+        const highest = Math.max(...scores);
+        const lowest = Math.min(...scores);
+
+        document.getElementById('average-score').textContent = average.toFixed(2);
+        document.getElementById('highest-score').textContent = highest;
+        document.getElementById('lowest-score').textContent = lowest;
+    }
+
+    // Function to calculate average
+    function calculateAverage(arr) {
+        if (arr.length === 0) return 0;
+        const sum = arr.reduce((acc, val) => acc + val, 0);
+        return sum / arr.length;
+    }
 });
